@@ -1,0 +1,55 @@
+@import '../styles/variables';
+
+.features {
+  background-color: $fromage-frais;
+  padding: 4rem 2rem;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+
+    @media (max-width: $breakpoint-mobile) {
+      flex-direction: column-reverse;
+      gap: 2rem;
+    }
+  }
+
+  .image {
+    flex: 1;
+  }
+
+  .text {
+    flex: 1;
+
+    h2 {
+      font-size: $font-size-h2;
+      color: $vin-de-ruelle;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .steps {
+      list-style: decimal;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+
+      li {
+        margin-bottom: 1.25rem;
+        line-height: 1.6;
+
+        strong {
+          display: block;
+          color: $cheddar-grille;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import '../styles/variables';
+
+.footer {
+  background-color: $vin-de-ruelle;
+  color: $nuage-de-lait;
+  padding: 2rem;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 1rem auto;
+
+    .socials {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+
+    a {
+      color: $nuage-de-lait;
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .top {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+  
+      .socials {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+  
+    .bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+  

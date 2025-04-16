@@ -1,0 +1,40 @@
+@import '../styles/variables';
+
+.button {
+  font-family: $font-hind;
+  font-size: 1rem;
+  border-radius: $radius;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &.primary {
+    background-color: $vin-de-ruelle;
+    color: $nuage-de-lait;
+
+    &:hover {
+      background-color: darken($vin-de-ruelle, 10%);
+    }
+  }
+
+  &.secondary {
+    background-color: $figue-facade;
+    color: $nuage-de-lait;
+
+    &:hover {
+      background-color: darken($figue-facade, 10%);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    color: $cheddar-grille;
+    border: 2px solid $cheddar-grille;
+
+    &:hover {
+      background-color: $cheddar-grille;
+      color: $nuage-de-lait;
+    }
+  }
+}

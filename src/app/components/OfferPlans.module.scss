@@ -1,0 +1,104 @@
+@import '../styles/variables';
+
+.section {
+  background-color: $vin-de-ruelle;
+  color: $nuage-de-lait;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: $font-size-h2;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  .tab {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 2px solid $nuage-de-lait;
+    color: $nuage-de-lait;
+    border-radius: $radius;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s ease;
+
+    &.active {
+      background-color: $nuage-de-lait;
+      color: $vin-de-ruelle;
+    }
+  }
+}
+
+.card {
+  background-color: lighten($vin-de-ruelle, 5%);
+  border-radius: $radius;
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.offerTitle {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.price {
+  font-size: 1.1rem;
+  margin-top: 0.25rem;
+  font-weight: bold;
+
+  &.green {
+    color: #47cf73;
+  }
+
+  &.blue {
+    color: #3e8ed0;
+  }
+
+  &.red {
+    color: #ff5a5f;
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+
+  li {
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+
+    &::before {
+      content: '🧀';
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+.goal {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}

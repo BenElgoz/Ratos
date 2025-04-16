@@ -1,0 +1,20 @@
+@import '../styles/variables';
+
+.header {
+  background-color: $nuage-de-lait;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+  height: auto;
+}

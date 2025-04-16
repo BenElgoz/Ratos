@@ -1,0 +1,76 @@
+@import '../styles/variables';
+
+.social {
+  background-color: $nuage-de-lait;
+  padding: 4rem 2rem;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .image {
+    flex: 1;
+  }
+
+  .text {
+    flex: 1;
+
+    h2 {
+      font-size: $font-size-h2;
+      color: $vin-de-ruelle;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-start;
+
+      @media (max-width: 768px) {
+        justify-content: center;
+      }
+
+      a {
+        display: inline-block;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .text {
+      .icons {
+        justify-content: center;
+      }
+    }
+  
+    .image {
+      width: 100%;
+    }
+  }
+  

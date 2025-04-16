@@ -1,0 +1,19 @@
+@import './variables';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: $font-hind;
+  font-size: $font-size-body;
+  background-color: $nuage-de-lait;
+  color: $souterrain-chic;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
