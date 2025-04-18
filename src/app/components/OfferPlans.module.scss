@@ -12,7 +12,7 @@
   }
 
   .subtitle {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     font-size: 1.1rem;
   }
 }
@@ -21,22 +21,23 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
 
   .tab {
-    padding: 0.5rem 1rem;
-    background-color: transparent;
-    border: 2px solid $nuage-de-lait;
-    color: $nuage-de-lait;
-    border-radius: $radius;
-    cursor: pointer;
+    background-color: $fromage-frais;
+    color: $vin-de-ruelle;
+    border: none;
     font-weight: bold;
-    transition: background 0.2s ease;
+    font-size: 1.1rem;
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
 
     &.active {
-      background-color: $nuage-de-lait;
-      color: $vin-de-ruelle;
+      background-color: $cheddar-grille;
+      color: $nuage-de-lait;
     }
   }
 }
@@ -44,61 +45,104 @@
 .card {
   background-color: lighten($vin-de-ruelle, 5%);
   border-radius: $radius;
-  padding: 2rem;
-  max-width: 700px;
+  padding: 2.5rem 3rem;
+  max-width: 1000px;
   margin: 0 auto;
-  text-align: left;
-}
-
-.header {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+  text-align: left;
+  flex-wrap: wrap;
 
-.offerTitle {
-  font-size: 1.25rem;
-  margin: 0;
-}
-
-.price {
-  font-size: 1.1rem;
-  margin-top: 0.25rem;
-  font-weight: bold;
-
-  &.green {
-    color: #47cf73;
-  }
-
-  &.blue {
-    color: #3e8ed0;
-  }
-
-  &.red {
-    color: #ff5a5f;
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 2rem;
   }
 }
 
-.list {
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  img {
+    width: 180px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    align-items: center;
+
+    img {
+      width: 140px;
+    }
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: $nuage-de-lait;
+    max-width: 360px;
+  }
+}
+
+.right {
+  flex: 1;
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   li {
-    padding-left: 1rem;
-    position: relative;
-    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1.5;
 
-    &::before {
-      content: '🧀';
-      position: absolute;
-      left: 0;
+    .emoji {
+      margin-right: 0.75rem;
+      font-size: 1.3rem;
+      display: inline-block;
+      width: 24px;
+      text-align: center;
     }
   }
 }
 
-.goal {
-  font-size: 0.95rem;
-  line-height: 1.5;
+.cta {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+
+  @media (max-width: $breakpoint-mobile) {
+    justify-content: center;
+  }
+
+  .contactBtn {
+    background-color: $cheddar-grille;
+    color: white;
+    font-size: 1.05rem;
+    padding: 1rem 2rem;
+    border-radius: $radius;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background-color: darken($cheddar-grille, 10%);
+    }
+  }
 }

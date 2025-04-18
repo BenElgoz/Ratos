@@ -5,23 +5,21 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.content}>
-        <Image
-          src="/images/logo-ratos-orange.svg"
-          alt="Logo Ratos"
-          width={120}
-          height={40}
-          className={styles.logo}
-        />
-        <h1>Rate pas l’occasion de gratter</h1>
-        <p>
+
+        <h1>Rate pas l’occasion<br />de gratter</h1>
+
+        <p className={styles.subtitle}>
           Télécharge l’app pour dénicher rapidement, facilement (et gratuitement !) les meilleurs bons plans près de chez toi.
         </p>
+
         <div className={styles.buttons}>
-          <a href="#" className={styles.storeBtn}>
-            <Image src="/images/appstore.svg" alt="App Store" width={120} height={40} />
+          <a className={styles.storeBtn} href="#">
+            <Image src="/images/appstore.svg" alt="App Store" width={20} height={20} />
+            <span>App Store</span>
           </a>
-          <a href="#" className={styles.storeBtn}>
-            <Image src="/images/playstore.svg" alt="Play Store" width={120} height={40} />
+          <a className={styles.storeBtn} href="#">
+            <Image src="/images/playstore.svg" alt="Play Store" width={20} height={20} />
+            <span>Play Store</span>
           </a>
         </div>
       </div>
@@ -29,11 +27,40 @@ export default function Hero() {
       <div className={styles.imageContainer}>
         <Image
           src="/images/phone-mockup.png"
-          alt="Aperçu application"
-          width={300}
-          height={600}
+          alt="Téléphone avec carte"
+          width={500}
+          height={500}
         />
-        {/* Fromages flottants à ajouter si tu veux en décor */}
+
+        {/* Fromages flottants */}
+        <Image
+          src="/images/cheese.png"
+          alt="Fromage décoratif"
+          width={50}
+          height={50}
+          className={styles.cheese + ' ' + styles.cheese1}
+        />
+        <Image
+          src="/images/cheese.png"
+          alt="Fromage décoratif"
+          width={50}
+          height={50}
+          className={styles.cheese + ' ' + styles.cheese2}
+        />
+        <Image
+          src="/images/cheese.png"
+          alt="Fromage décoratif"
+          width={50}
+          height={50}
+          className={styles.cheese + ' ' + styles.cheese3}
+        />
+        <Image
+          src="/images/cheese.png"
+          alt="Fromage décoratif"
+          width={50}
+          height={50}
+          className={styles.cheese + ' ' + styles.cheese4}
+        />
       </div>
     </section>
   );

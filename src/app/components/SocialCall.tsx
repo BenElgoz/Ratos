@@ -21,10 +21,10 @@ export default function SocialCall() {
             Rejoins-nous sur les réseaux pour ne rien rater du grattage&nbsp;!
           </p>
           <div className={styles.icons}>
-            <a href="#"><Image src="/images/ico-instagram.svg" alt="Instagram" width={32} height={32} /></a>
-            <a href="#"><Image src="/images/ico-tiktok.svg" alt="TikTok" width={32} height={32} /></a>
-            <a href="#"><Image src="/images/ico-facebook.svg" alt="Facebook" width={32} height={32} /></a>
-            <a href="#"><Image src="/images/ico-linkedin.svg" alt="LinkedIn" width={32} height={32} /></a>
+            <a href="#"><Image src="/images/ico-instagram-orange.svg" alt="Instagram" width={32} height={32} /></a>
+            <a href="#"><Image src="/images/ico-tiktok-orange.svg" alt="TikTok" width={32} height={32} /></a>
+            <a href="#"><Image src="/images/ico-facebook-orange.svg" alt="Facebook" width={32} height={32} /></a>
+            <a href="#"><Image src="/images/ico-linkedin-orange.svg" alt="LinkedIn" width={32} height={32} /></a>
           </div>
         </div>
       </div>

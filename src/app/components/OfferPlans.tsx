@@ -4,54 +4,58 @@ import styles from './OfferPlans.module.scss';
 import { useState } from 'react';
 import Image from 'next/image';
 
-const offers = {
+type Benefit = {
+  icon: string;
+  label: string;
+};
+
+type Offer = {
+  name: string;
+  description: string;
+  benefits: Benefit[];
+};
+
+type OfferKey = 'decouverte' | 'visibilite' | 'engagement';
+
+const offers: Record<OfferKey, Offer> = {
   decouverte: {
-    title: 'Offre Freemium – “Découverte”',
-    price: '0€/mois',
-    color: 'green',
+    name: 'Découverte',
+    description: `Testes RATOS gratuitement : 1 offre, présence sur la carte, premiers clients au rendez-vous. Zéro risque, juste pour voir si ça mord`,
     benefits: [
-      '1 offre active à la fois',
-      'Présence basique sur la carte',
-      'Création de fiche Google si besoin',
-      'Accès aux avis laissés par les clients',
-      'Statistiques simples (nombre de vues)',
-    ],
-    goal: `Tester RATZ sans engagement. Publie une première offre, attire tes premiers clients, et découvre si la plateforme est faite pour toi.`
+      { icon: '🧀', label: '1 offre active à la fois' },
+      { icon: '🗺️', label: 'Présence basique sur la carte' },
+      { icon: '🖊️', label: 'Création de fiche Google si besoin' },
+      { icon: '💬', label: 'Accès aux avis laissés par les clients' },
+      { icon: '👁️', label: 'Accès au nombre de vues de l’offre' }
+    ]
   },
   visibilite: {
-    title: 'Offre Standard – “Visibilité”',
-    price: '29€/mois',
-    color: 'blue',
+    name: 'Visibilité',
+    description: `Attire plus de clients avec plusieurs offres actives, meilleure mise en avant sur la carte, et statistiques détaillées.`,
     benefits: [
-      'Jusqu’à 5 offres actives',
-      'Meilleure visibilité sur la carte RATZ',
-      'Statistiques plus poussées (clics, visites, interactions)',
-      'Accompagnement pour les avis Google',
-      'Participation aux campagnes locales de RATZ',
-    ],
-    goal: `Gagner en visibilité locale et remplir pendant les périodes plus calmes. Idéal pour booster ta fréquentation.`
+      { icon: '📢', label: '5 offres actives en simultané' },
+      { icon: '⭐', label: 'Mise en avant locale' },
+      { icon: '📊', label: 'Statistiques avancées' },
+      { icon: '🔧', label: 'Accompagnement Google Avis' },
+      { icon: '📍', label: 'Participation aux campagnes RATOS' }
+    ]
   },
   engagement: {
-    title: 'Offre Premium – “Engagement”',
-    price: '59€/mois',
-    color: 'red',
+    name: 'Engagement',
+    description: `Publie autant d’offres que tu veux, utilise les notifications ciblées et suis les retours détaillés de ta visibilité.`,
     benefits: [
-      'Offres illimitées + offres flash',
-      'Mise en avant prioritaire sur la carte',
-      'Notifications ciblées',
-      'Analyse complète de l’impact',
-      'Accès VIP aux événements et opérations co-brandées',
-    ],
-    goal: `Aller à fond dans la fidélisation et l’impact. Tu profites d’une visibilité maximale, de stats précises et d’un vrai lien client.`
+      { icon: '💥', label: 'Offres illimitées + flash' },
+      { icon: '📌', label: 'Mise en avant prioritaire' },
+      { icon: '📬', label: 'Notifications ciblées' },
+      { icon: '📈', label: 'Analyse complète' },
+      { icon: '🎉', label: 'Accès aux événements exclusifs' }
+    ]
   }
 };
 
-type OfferKey = keyof typeof offers;
-
 export default function OfferPlans() {
-  const [activeOffer, setActiveOffer] = useState<OfferKey>('decouverte');
-
-  const offer = offers[activeOffer];
+  const [active, setActive] = useState<OfferKey>('decouverte');
+  const offer = offers[active];
 
   return (
     <section className={styles.section}>
@@ -61,51 +65,36 @@ export default function OfferPlans() {
       </p>
 
       <div className={styles.tabs}>
-        <button
-          className={`${styles.tab} ${activeOffer === 'decouverte' ? styles.active : ''}`}
-          onClick={() => setActiveOffer('decouverte')}
-        >
-          Découverte
-        </button>
-        <button
-          className={`${styles.tab} ${activeOffer === 'visibilite' ? styles.active : ''}`}
-          onClick={() => setActiveOffer('visibilite')}
-        >
-          Visibilité
-        </button>
-        <button
-          className={`${styles.tab} ${activeOffer === 'engagement' ? styles.active : ''}`}
-          onClick={() => setActiveOffer('engagement')}
-        >
-          Engagement
-        </button>
+        {(['decouverte', 'visibilite', 'engagement'] as OfferKey[]).map((key) => (
+          <button
+            key={key}
+            className={`${styles.tab} ${active === key ? styles.active : ''}`}
+            onClick={() => setActive(key)}
+          >
+            {offers[key].name}
+          </button>
+        ))}
       </div>
 
       <div className={styles.card}>
-        <div className={styles.header}>
-          <Image
-            src="/images/mouse-offer.png"
-            alt="Souris mascotte"
-            width={80}
-            height={80}
-          />
-          <div>
-            <h3 className={styles.offerTitle}>
-              {offer.title}
-            </h3>
-            <p className={`${styles.price} ${styles[offer.color]}`}>
-              {offer.price}
-            </p>
-          </div>
+        <div className={styles.left}>
+          <Image src="/images/mouse-offer.png" alt="Souris RATOS" width={160} height={160} />
+          <h3>{offer.name}</h3>
+          <p>{offer.description}</p>
         </div>
 
-        <ul className={styles.list}>
-          {offer.benefits.map((item, idx) => (
-            <li key={idx}>{item}</li>
+        <ul className={styles.right}>
+          {offer.benefits.map((b, i) => (
+            <li key={i}>
+              <span className={styles.emoji}>{b.icon}</span>
+              {b.label}
+            </li>
           ))}
         </ul>
+      </div>
 
-        <p className={styles.goal}><strong>Objectif&nbsp;:</strong> {offer.goal}</p>
+      <div className={styles.cta}>
+        <a href="#" className={styles.contactBtn}>Nous contacter</a>
       </div>
     </section>
   );

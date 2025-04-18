@@ -1,68 +1,122 @@
 @import '../styles/variables';
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   background: linear-gradient(to bottom, $nuage-de-lait 0%, $cheddar-grille 100%);
   padding: 4rem 2rem;
+  text-align: center;
   position: relative;
+  overflow: hidden;
+}
 
-  .logo {
-    margin-bottom: 1.5rem;
+.logo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+
+  @media (max-width: $breakpoint-mobile) {
+    position: relative;
+    margin: 0 auto 2rem;
   }
 }
 
 .content {
   max-width: 700px;
+  margin: 0 auto;
 
   h1 {
-    font-size: $font-size-h1;
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 800;
     color: $vin-de-ruelle;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 2.25rem;
+    }
   }
 
-  p {
+  .subtitle {
     font-size: 1.125rem;
-    color: $souterrain-chic;
-    margin-bottom: 2rem;
+    color: $cheddar-grille;
+    margin: 0 auto 2rem;
+    max-width: 600px;
+    line-height: 1.5;
+    font-weight: 600;
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 1rem;
+    }
   }
 
   .buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 
     .storeBtn {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: $vin-de-ruelle;
+      color: white;
+      font-weight: 600;
+      border-radius: $radius;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s ease;
 
       &:hover {
         transform: scale(1.05);
+      }
+
+      span {
+        font-size: 1rem;
       }
     }
   }
 }
 
 .imageContainer {
+  position: relative;
+  margin-top: 3rem;
+
   img {
     max-width: 100%;
     height: auto;
-  }
-}
-
-@media (max-width: $breakpoint-mobile) {
-  .content h1 {
-    font-size: 2rem;
+    display: block;
+    margin: 0 auto;
   }
 
-  .content p {
-    font-size: 1rem;
-  }
+  .cheese {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    opacity: 0.8;
 
-  .imageContainer {
-    margin-top: 1rem;
+    @media (max-width: $breakpoint-mobile) {
+      width: 75px;
+    }
+
+    &.cheese1 {
+      top: 10%;
+      left: 15%;
+    }
+
+    &.cheese2 {
+      bottom: 10%;
+      left: 25%;
+    }
+
+    &.cheese3 {
+      top: 5%;
+      right: 30%;
+    }
+
+    &.cheese4 {
+      bottom: 20%;
+      right: 15%;
+    }
   }
 }
