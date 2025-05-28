@@ -1,0 +1,55 @@
+.form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.dietGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.dietBtn {
+  padding: 0.5rem 1rem;
+  border: 2px solid #71004b;
+  border-radius: 999px;
+  background-color: white;
+  color: #71004b;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.dietBtn:hover {
+  background-color: #f8e6f0;
+}
+
+.selected {
+  background-color: #71004b;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  background-color: #71004b;
+  color: white;
+}
+
+.actions button:first-of-type {
+  background-color: #999;
+}
