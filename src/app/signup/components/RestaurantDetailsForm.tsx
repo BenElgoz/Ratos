@@ -1,16 +1,26 @@
 'use client';
 
-import { ChangeEvent, FormEvent } from 'react';
+import { FormEvent } from 'react';
 import styles from './RestaurantDetailsForm.module.scss';
+
+type OpeningHours = {
+  monday: [string, string];
+  tuesday: [string, string];
+  wednesday: [string, string];
+  thursday: [string, string];
+  friday: [string, string];
+  saturday: [string, string];
+  sunday: [string, string];
+};
 
 type RestaurantDetails = {
   name: string;
-  description: string;
   address: string;
-  latitude: string;
-  longitude: string;
-  openingHours: string;
-  googleMapsUrl: string;
+  city: string;
+  zipCode: string;
+  type: string;
+  cuisine: string;
+  openingHours: OpeningHours;
 };
 
 type Props = {
@@ -21,7 +31,7 @@ type Props = {
 };
 
 export default function RestaurantDetailsForm({ data, onChange, onNext, onBack }: Props) {
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     onChange({ ...data, [name]: value });
   };
@@ -33,73 +43,17 @@ export default function RestaurantDetailsForm({ data, onChange, onNext, onBack }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Informations sur ton établissement</h2>
-
+      <h2>Détails du restaurant</h2>
       <div className={styles.fields}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nom du restaurant"
-          value={data.name}
-          onChange={handleChange}
-          required
-        />
-
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={data.description}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="text"
-          name="address"
-          placeholder="Adresse complète"
-          value={data.address}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="text"
-          name="latitude"
-          placeholder="Latitude"
-          value={data.latitude}
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="longitude"
-          placeholder="Longitude"
-          value={data.longitude}
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="openingHours"
-          placeholder="Horaires d'ouverture"
-          value={data.openingHours}
-          onChange={handleChange}
-          required
-        />
-
-        <input
-          type="url"
-          name="googleMapsUrl"
-          placeholder="Lien Google Maps"
-          value={data.googleMapsUrl}
-          onChange={handleChange}
-        />
+      <input name="name" placeholder="Nom" value={data.name} onChange={handleChange} required />
+      <input name="address" placeholder="Adresse" value={data.address} onChange={handleChange} required />
+      <input name="city" placeholder="Ville" value={data.city} onChange={handleChange} required />
+      <input name="zipCode" placeholder="Code Postal" value={data.zipCode} onChange={handleChange} required />
+      <input name="type" placeholder="Type" value={data.type} onChange={handleChange} required />
+      <input name="cuisine" placeholder="Cuisine" value={data.cuisine} onChange={handleChange} required />
       </div>
-
       <div className={styles.actions}>
-        <button type="button" onClick={onBack}>
-          Retour
-        </button>
+        <button type="button" onClick={onBack}>Retour</button>
         <button type="submit">Suivant</button>
       </div>
     </form>

@@ -1,23 +1,25 @@
 'use client';
 
-import { ChangeEvent, FormEvent } from 'react';
+import { FormEvent } from 'react';
 import styles from './RestaurantSocialForm.module.scss';
 
 type SocialLinks = {
-  instagram?: string;
-  facebook?: string;
-  website?: string;
+  instagram: string;
+  tiktok: string;
+  facebook: string;
+  linkedin: string;
+  x: string;
 };
 
 type Props = {
   data: SocialLinks;
   onChange: (data: SocialLinks) => void;
-  onSubmit: () => void;
   onBack: () => void;
+  onSubmit: () => void;
 };
 
-export default function RestaurantSocialForm({ data, onChange, onSubmit, onBack }: Props) {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+export default function RestaurantSocialForm({ data, onChange, onBack, onSubmit }: Props) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     onChange({ ...data, [name]: value });
   };
@@ -30,37 +32,16 @@ export default function RestaurantSocialForm({ data, onChange, onSubmit, onBack 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2>Réseaux sociaux</h2>
-      <p>(facultatif)</p>
-
-      <input
-        type="url"
-        name="instagram"
-        placeholder="Lien Instagram"
-        value={data.instagram || ''}
-        onChange={handleChange}
-      />
-
-      <input
-        type="url"
-        name="facebook"
-        placeholder="Lien Facebook"
-        value={data.facebook || ''}
-        onChange={handleChange}
-      />
-
-      <input
-        type="url"
-        name="website"
-        placeholder="Site web"
-        value={data.website || ''}
-        onChange={handleChange}
-      />
-
+      <div className="input">
+      <input name="instagram" placeholder="Instagram" value={data.instagram} onChange={handleChange} />
+      <input name="tiktok" placeholder="TikTok" value={data.tiktok} onChange={handleChange} />
+      <input name="facebook" placeholder="Facebook" value={data.facebook} onChange={handleChange} />
+      <input name="linkedin" placeholder="LinkedIn" value={data.linkedin} onChange={handleChange} />
+      <input name="x" placeholder="X (ex-Twitter)" value={data.x} onChange={handleChange} />
+      </div>
       <div className={styles.actions}>
-        <button type="button" onClick={onBack}>
-          Retour
-        </button>
-        <button type="submit">Terminer</button>
+        <button type="button" onClick={onBack}>Retour</button>
+        <button type="submit">Valider</button>
       </div>
     </form>
   );

@@ -99,10 +99,51 @@ export default function SignupPage() {
     nextStep();
   };
 
+  const handleSubmit = async () => {
+    try {
+      // const response = await fetch('http://localhost:4000/signup', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userData.email,
+          username: userData.username,
+          password: userData.password,
+          role,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          phoneNumber: restaurantData.phone,
+          restaurant: {
+            name: restaurantData.name,
+            description: '',
+            address: `${restaurantData.address}, ${restaurantData.city} ${restaurantData.zipCode}`,
+            latitude: 0,
+            longitude: 0,
+            openingHours: JSON.stringify(restaurantData.openingHours),
+            googleMapsUrl: restaurantData.googleMapsUrl,
+            mainImageUrl: '', 
+          },
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Erreur serveur');
+      }
+
+      console.log('Inscription réussie ! Token :', result.token);
+    } catch (error) {
+      console.error('Erreur lors de l’inscription :', error);
+    }
+  };
+
   return (
     <main>
       {step === 0 && <StepSelector onSelect={handleRoleSelect} role={role} />}
-      
+
       {role === 'CLIENT' && step === 1 && (
         <UserInfoForm
           data={userData}
@@ -137,27 +178,51 @@ export default function SignupPage() {
           onBack={prevStep}
         />
       )}
+
       {role === 'RESTAURATEUR' && step === 2 && (
         <RestaurantDetailsForm
-          data={restaurantData}
-          onChange={setRestaurantData}
+          data={{
+            name: restaurantData.name,
+            address: restaurantData.address,
+            city: restaurantData.city,
+            zipCode: restaurantData.zipCode,
+            type: restaurantData.type,
+            cuisine: restaurantData.cuisine,
+            openingHours: restaurantData.openingHours,
+          }}
+          onChange={(newData) =>
+            setRestaurantData((prev) => ({ ...prev, ...newData }))
+          }
           onNext={nextStep}
           onBack={prevStep}
         />
       )}
+
       {role === 'RESTAURATEUR' && step === 3 && (
         <RestaurantMediaForm
-          data={restaurantData}
-          onChange={setRestaurantData}
+          mainImageUrl={restaurantData.googleMapsUrl}
+          onChange={(url: string) =>
+            setRestaurantData((prev) => ({ ...prev, googleMapsUrl: url }))
+          }
           onNext={nextStep}
           onBack={prevStep}
         />
       )}
+
       {role === 'RESTAURATEUR' && step === 4 && (
         <RestaurantSocialForm
-          data={restaurantData}
-          onChange={setRestaurantData}
+          data={{
+            instagram: restaurantData.instagram,
+            facebook: restaurantData.facebook,
+            linkedin: restaurantData.linkedin,
+            tiktok: restaurantData.tiktok,
+            x: restaurantData.x,
+          }}
+          onChange={(newLinks) =>
+            setRestaurantData((prev) => ({ ...prev, ...newLinks }))
+          }
           onBack={prevStep}
+          onSubmit={handleSubmit}
         />
       )}
     </main>
