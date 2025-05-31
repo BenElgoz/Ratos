@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import StepSelector from './components/StepSelector';
 import UserInfoForm from './components/UserInfoForm';
 import UserDietForm from './components/UserDietForm';
@@ -50,6 +51,7 @@ type RestaurantData = {
 };
 
 export default function SignupPage() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [role, setRole] = useState<Role | null>(null);
 
@@ -101,31 +103,40 @@ export default function SignupPage() {
 
   const handleSubmit = async () => {
     try {
-      // const response = await fetch('http://localhost:4000/signup', {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signup`, {
+      const payload: any = {
+        email: userData.email,
+        username: userData.username,
+        password: userData.password,
+        role,
+      };
+
+      if (role === 'CLIENT') {
+        payload.firstName = userData.firstName;
+        payload.lastName = userData.lastName;
+      }
+
+      if (role === 'RESTAURATEUR') {
+        payload.firstName = userData.firstName;
+        payload.lastName = userData.lastName;
+        payload.phoneNumber = restaurantData.phone;
+        payload.restaurant = {
+          name: restaurantData.name,
+          description: '',
+          address: `${restaurantData.address}, ${restaurantData.city} ${restaurantData.zipCode}`,
+          latitude: 0,
+          longitude: 0,
+          openingHours: JSON.stringify(restaurantData.openingHours),
+          googleMapsUrl: restaurantData.googleMapsUrl,
+          mainImageUrl: '',
+        };
+      }
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: userData.email,
-          username: userData.username,
-          password: userData.password,
-          role,
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          phoneNumber: restaurantData.phone,
-          restaurant: {
-            name: restaurantData.name,
-            description: '',
-            address: `${restaurantData.address}, ${restaurantData.city} ${restaurantData.zipCode}`,
-            latitude: 0,
-            longitude: 0,
-            openingHours: JSON.stringify(restaurantData.openingHours),
-            googleMapsUrl: restaurantData.googleMapsUrl,
-            mainImageUrl: '', 
-          },
-        }),
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
@@ -134,9 +145,11 @@ export default function SignupPage() {
         throw new Error(result.error || 'Erreur serveur');
       }
 
-      console.log('Inscription réussie ! Token :', result.token);
+      console.log('✅ Inscription réussie ! Token :', result.token);
+      router.push('/confirmation')
     } catch (error) {
-      console.error('Erreur lors de l’inscription :', error);
+      console.error('❌ Erreur lors de l’inscription :', error);
+      alert('Erreur lors de l’inscription, consulte la console pour plus d’infos.');
     }
   };
 
@@ -152,6 +165,7 @@ export default function SignupPage() {
           onBack={prevStep}
         />
       )}
+
       {role === 'CLIENT' && step === 2 && (
         <UserDietForm
           data={restaurantData.diets}
@@ -159,7 +173,7 @@ export default function SignupPage() {
             setRestaurantData((prev) => ({ ...prev, diets }))
           }
           onBack={prevStep}
-          onNext={nextStep}
+          onNext={handleSubmit}
         />
       )}
 
