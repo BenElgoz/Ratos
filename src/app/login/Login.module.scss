@@ -1,0 +1,57 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  margin: 0 auto 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  label {
+    text-align: left;
+    font-weight: 600;
+    color: #300019;
+  }
+
+  input {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #770048;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+.error {
+  color: #c00;
+  font-size: 0.9rem;
+}
+
+.signupLink {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+
+  a {
+    font-weight: bold;
+    color: #300019;
+    text-decoration: underline;
+  }
+}

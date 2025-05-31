@@ -26,19 +26,17 @@ export default function RestaurantMediaForm({ mainImageUrl, onChange, onNext, on
       <p>Ajoute une image qui représentera ton établissement</p>
 
       <input
-  type="url"
-  name="mainImageUrl"
-  placeholder="URL de l'image principale"
-  value={mainImageUrl}
-  onChange={handleInputChange}
-  required
-  className={styles.urlInput}
-/>
+        type="url"
+        name="mainImageUrl"
+        placeholder="URL de l'image principale"
+        value={mainImageUrl}
+        onChange={handleInputChange}
+        required
+        className={styles.urlInput}
+      />
 
       <div className={styles.actions}>
-        <button type="button" onClick={onBack}>
-          Retour
-        </button>
+        <button type="button" onClick={onBack}>Retour</button>
         <button type="submit">Suivant</button>
       </div>
     </form>

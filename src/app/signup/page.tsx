@@ -25,11 +25,14 @@ type UserData = {
 type RestaurantData = {
   phone: string;
   name: string;
+  description: string;
   address: string;
   city: string;
   zipCode: string;
   type: string;
   cuisine: string;
+  latitude: string;
+  longitude: string;
   diets: string[];
   openingHours: {
     monday: [string, string];
@@ -43,6 +46,7 @@ type RestaurantData = {
   logo: File | null;
   photos: File[];
   googleMapsUrl: string;
+  mainImageUrl: string;
   instagram: string;
   tiktok: string;
   facebook: string;
@@ -68,11 +72,14 @@ export default function SignupPage() {
   const [restaurantData, setRestaurantData] = useState<RestaurantData>({
     phone: '',
     name: '',
+    description: '',
     address: '',
     city: '',
     zipCode: '',
     type: '',
     cuisine: '',
+    latitude: '',
+    longitude: '',
     diets: [],
     openingHours: {
       monday: ['', ''],
@@ -86,6 +93,7 @@ export default function SignupPage() {
     logo: null,
     photos: [],
     googleMapsUrl: '',
+    mainImageUrl: '',
     instagram: '',
     tiktok: '',
     facebook: '',
@@ -121,13 +129,13 @@ export default function SignupPage() {
         payload.phoneNumber = restaurantData.phone;
         payload.restaurant = {
           name: restaurantData.name,
-          description: '',
+          description: restaurantData.description,
           address: `${restaurantData.address}, ${restaurantData.city} ${restaurantData.zipCode}`,
-          latitude: 0,
-          longitude: 0,
+          latitude: parseFloat(restaurantData.latitude),
+          longitude: parseFloat(restaurantData.longitude),
           openingHours: JSON.stringify(restaurantData.openingHours),
           googleMapsUrl: restaurantData.googleMapsUrl,
-          mainImageUrl: '',
+          mainImageUrl: restaurantData.mainImageUrl,
         };
       }
 
@@ -146,7 +154,7 @@ export default function SignupPage() {
       }
 
       console.log('✅ Inscription réussie ! Token :', result.token);
-      router.push('/confirmation')
+      router.push('/confirmation');
     } catch (error) {
       console.error('❌ Erreur lors de l’inscription :', error);
       alert('Erreur lors de l’inscription, consulte la console pour plus d’infos.');
@@ -197,11 +205,15 @@ export default function SignupPage() {
         <RestaurantDetailsForm
           data={{
             name: restaurantData.name,
+            description: restaurantData.description,
             address: restaurantData.address,
             city: restaurantData.city,
             zipCode: restaurantData.zipCode,
-            type: restaurantData.type,
-            cuisine: restaurantData.cuisine,
+            // type: restaurantData.type,
+            // cuisine: restaurantData.cuisine,
+            latitude: restaurantData.latitude,
+            longitude: restaurantData.longitude,
+            googleMapsUrl: restaurantData.googleMapsUrl,
             openingHours: restaurantData.openingHours,
           }}
           onChange={(newData) =>
@@ -214,9 +226,9 @@ export default function SignupPage() {
 
       {role === 'RESTAURATEUR' && step === 3 && (
         <RestaurantMediaForm
-          mainImageUrl={restaurantData.googleMapsUrl}
+          mainImageUrl={restaurantData.mainImageUrl}
           onChange={(url: string) =>
-            setRestaurantData((prev) => ({ ...prev, googleMapsUrl: url }))
+            setRestaurantData((prev) => ({ ...prev, mainImageUrl: url }))
           }
           onNext={nextStep}
           onBack={prevStep}

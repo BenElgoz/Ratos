@@ -40,3 +40,38 @@
 .actions button:first-of-type {
   background-color: #999;
 }
+
+.hoursGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dayRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dayLabel {
+  flex: 1 1 120px;
+  font-weight: bold;
+}
+
+.timeInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 2;
+}
+
+.closedToggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
