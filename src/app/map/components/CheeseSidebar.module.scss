@@ -1,0 +1,139 @@
+@import '../../styles/variables';
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100%;
+  background: $nuage-de-lait;
+  z-index: 1100;
+  padding: 16px;
+  overflow-y: auto;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .closeBtn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+.searchInput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+
+  .tag {
+    background: $fromage-frais;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: $vin-de-ruelle;
+    cursor: pointer;
+  }
+}
+
+.noOffers {
+  text-align: center;
+  color: $souterrain-chic;
+  font-style: italic;
+
+  img {
+    margin: 12px auto;
+  }
+}
+
+.results {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.offerCard {
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  img {
+    object-fit: cover;
+  }
+
+  .details {
+    padding: 8px 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .priceTag {
+      background: $cheddar-grille;
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: white;
+      align-self: start;
+    }
+
+    .restaurant {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .desc {
+      font-size: 13px;
+      margin: 8px 0;
+      flex: 1;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+
+      .reserve {
+        background: $figue-facade;
+        color: white;
+        border: none;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .seeMore {
+        background: $cheddar-grille;
+        color: white;
+        border: none;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    }
+  }
+}

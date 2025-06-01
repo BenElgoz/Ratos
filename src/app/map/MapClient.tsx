@@ -11,14 +11,10 @@ import {
 import 'leaflet/dist/leaflet.css';
 import L, { LatLngExpression } from 'leaflet';
 import styles from './map.module.scss';
-
-type Restaurant = {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  address: string;
-};
+import { Restaurant } from '@/types/restaurant';
+import SearchSidebar from './components/SearchSidebar';
+import MapNavigation from './components/MapNavigation';
+import CheeseSidebar from './components/CheeseSidebar';
 
 const mouseIcon = L.icon({
   iconUrl: '/images/mouse-icon.png',
@@ -44,12 +40,23 @@ function FlyToMarker({ position }: { position: LatLngExpression }) {
   return null;
 }
 
+type Offer = {
+  id: string;
+  title: string;
+  description: string;
+  restaurantName: string;
+  distance: string;
+  imageUrl: string;
+};
+
 export default function MapClient() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [offers, setOffers] = useState<Offer[]>([]);
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [address, setAddress] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [flyTarget, setFlyTarget] = useState<LatLngExpression | null>(null);
+  const [activePanel, setActivePanel] = useState<'search' | 'cheese' | null>('search');
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -61,7 +68,19 @@ export default function MapClient() {
         console.error('❌ Erreur en récupérant les restaurants :', err);
       }
     };
+
+    const fetchOffers = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offers`);
+        const data = await res.json();
+        setOffers(data);
+      } catch (err) {
+        console.error('❌ Erreur en récupérant les offres :', err);
+      }
+    };
+
     fetchRestaurants();
+    fetchOffers();
   }, []);
 
   useEffect(() => {
@@ -109,6 +128,32 @@ export default function MapClient() {
 
   return (
     <div className={styles.mapContainer}>
+      <MapNavigation
+        active={activePanel}
+        onToggleSearch={() =>
+          setActivePanel((prev) => (prev === 'search' ? null : 'search'))
+        }
+        onToggleCheese={() =>
+          setActivePanel((prev) => (prev === 'cheese' ? null : 'cheese'))
+        }
+      />
+
+      <SearchSidebar
+        restaurants={restaurants}
+        isOpen={activePanel === 'search'}
+        onClose={() => setActivePanel(null)}
+        onSelect={(restaurant) => {
+          setFlyTarget([restaurant.latitude, restaurant.longitude]);
+          setActivePanel(null);
+        }}
+      />
+
+      <CheeseSidebar
+        offers={offers}
+        isOpen={activePanel === 'cheese'}
+        onClose={() => setActivePanel(null)}
+      />
+
       {error && (
         <div className={styles.searchBox}>
           <input
@@ -135,20 +180,16 @@ export default function MapClient() {
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
 
-        {/* Marqueur position actuelle */}
         {position && (
           <Marker
             position={position}
             icon={userIcon}
-            eventHandlers={{
-              click: () => setFlyTarget(position),
-            }}
+            eventHandlers={{ click: () => setFlyTarget(position) }}
           >
             <Popup>📍 Vous êtes ici</Popup>
           </Marker>
         )}
 
-        {/* Marqueurs restaurants */}
         {restaurants.map((resto) => {
           const coords: [number, number] = [resto.latitude, resto.longitude];
           return (
@@ -156,9 +197,7 @@ export default function MapClient() {
               key={resto.id}
               position={coords}
               icon={mouseIcon}
-              eventHandlers={{
-                click: () => setFlyTarget(coords),
-              }}
+              eventHandlers={{ click: () => setFlyTarget(coords) }}
             >
               <Popup>
                 <strong>{resto.name}</strong>

@@ -1,0 +1,92 @@
+@import '../../styles/variables';
+
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.imageWrapper {
+  position: relative;
+
+  .image {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .favorite {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: $nuage-de-lait;
+    padding: 4px 6px;
+    border-radius: 50%;
+    font-size: 18px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  }
+}
+
+.content {
+  padding: 1rem;
+
+  .tag {
+    background: $cheddar-grille;
+    color: white;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .meta {
+    font-size: 0.9rem;
+    color: gray;
+    margin-bottom: 8px;
+  }
+
+  .desc {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+
+    .reserve {
+      flex: 1;
+      background: $figue-facade;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .view {
+      flex: 1;
+      background: $croute-doree;
+      color: black;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
