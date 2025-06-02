@@ -1,0 +1,83 @@
+@import '../styles/variables';
+
+.dashboard {
+  padding: 24px;
+  background: $nuage-de-lait;
+  min-height: 100vh;
+}
+
+.loading {
+  padding: 24px;
+  text-align: center;
+  color: $souterrain-chic;
+}
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  color: white;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+
+  .createBtn {
+    background: $cheddar-grille;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+.offers {
+  margin-top: 32px;
+
+  h2 {
+    font-size: 22px;
+    color: $vin-de-ruelle;
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+  }
+}
