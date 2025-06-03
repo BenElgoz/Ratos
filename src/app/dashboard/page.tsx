@@ -8,8 +8,8 @@ import styles from './Dashboard.module.scss';
 type Promotion = {
   id: string;
   title: string;
-  startDate: string;
-  endDate: string;
+  description: string;
+  imageUrl: string;
 };
 
 type Restaurant = {
@@ -28,9 +28,7 @@ export default function DashboardPage() {
       const token = localStorage.getItem('token');
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/restaurant/me`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
         setRestaurant(data);
@@ -57,16 +55,16 @@ export default function DashboardPage() {
         className={styles.banner}
         style={{ backgroundImage: `url(${restaurant.mainImageUrl})` }}
       >
-        <h1>Bienvenue {restaurant.name} !</h1>
-        <button onClick={handleLogout}>Déconnexion</button>
+        <h1>Bienvenue, {restaurant.name} !</h1>
+        <button onClick={handleLogout} className={styles.logout}>Déconnexion</button>
       </div>
 
       <div className={styles.actions}>
         <button
           className={styles.createBtn}
-          onClick={() => router.push('/dashboard/create-offer')}
+          onClick={() => router.push('/dashboard/offers')}
         >
-          ➕ Créer une offre
+          ➕ Créer une nouvelle offre
         </button>
       </div>
 
@@ -75,15 +73,21 @@ export default function DashboardPage() {
         {restaurant.promotions.length === 0 ? (
           <p>Aucune offre pour le moment.</p>
         ) : (
-          <ul>
+          <div className={styles.offerList}>
             {restaurant.promotions.map((promo) => (
-              <li key={promo.id}>
-                <strong>{promo.title}</strong> – du{' '}
-                {new Date(promo.startDate).toLocaleDateString()} au{' '}
-                {new Date(promo.endDate).toLocaleDateString()}
-              </li>
+              <div key={promo.id} className={styles.card}>
+                <img src={promo.imageUrl} alt={promo.title} className={styles.cardImage} />
+                <div className={styles.cardContent}>
+                  <span className={styles.cardTitle}>{promo.title}</span>
+                  <strong className={styles.cardRestaurant}>{restaurant.name}</strong>
+                  <p className={styles.cardDescription}>{promo.description}</p>
+                  <button className={styles.editBtn}>
+                    Modifier l’offre
+                  </button>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>
