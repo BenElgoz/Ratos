@@ -66,6 +66,7 @@ export default function DashboardPage() {
         >
           ➕ Créer une nouvelle offre
         </button>
+        
       </div>
 
       <div className={styles.offers}>
@@ -81,7 +82,7 @@ export default function DashboardPage() {
                   <span className={styles.cardTitle}>{promo.title}</span>
                   <strong className={styles.cardRestaurant}>{restaurant.name}</strong>
                   <p className={styles.cardDescription}>{promo.description}</p>
-                  <button className={styles.editBtn}>
+                  <button className={styles.editBtn} onClick={() => router.push(`/dashboard/offers/${promo.id}/edit`)}>
                     Modifier l’offre
                   </button>
                 </div>

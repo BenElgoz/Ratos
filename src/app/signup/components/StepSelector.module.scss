@@ -65,3 +65,14 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.signupLink {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+
+  a {
+    font-weight: bold;
+    color: #300019;
+    text-decoration: underline;
+  }
+}

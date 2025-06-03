@@ -1,10 +1,11 @@
-import styles from './Header.module.scss';
-import Image from 'next/image';
-import Link from 'next/link';
+// import styles from './Header.module.scss';
+// import Image from 'next/image';
+// import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className={styles.header}>
+    // <header className={styles.header}>
+    <header>
         <title>Ratos</title>
       {/* <div className={styles.headerContent}>
         <Link href="/" className={styles.logo}>

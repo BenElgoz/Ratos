@@ -2,6 +2,9 @@ import styles from './Hero.module.scss';
 import Image from 'next/image';
 
 export default function Hero() {
+  const handleClick = () => {
+    window.plausible?.('cta-click');
+  };
   return (
     <section className={styles.hero}>
       <div className={styles.content}>

@@ -1,0 +1,87 @@
+@import '../../../../styles/variables';
+
+.form {
+  max-width: 700px;
+  margin: 40px auto;
+  background: $nuage-de-lait;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h1 {
+    font-size: 24px;
+    color: $vin-de-ruelle;
+    text-align: center;
+  }
+
+  input,
+  textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .dates {
+    display: flex;
+    gap: 16px;
+
+    div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 13px;
+        margin-bottom: 4px;
+        color: $souterrain-chic;
+      }
+
+      input {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .submitBtn {
+    background: $cheddar-grille;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($cheddar-grille, 10%);
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: $souterrain-chic;
+}
+
+@media (max-width: 768px) {
+  .form {
+    margin: 20px;
+    padding: 20px;
+
+    .dates {
+      flex-direction: column;
+    }
+  }
+}

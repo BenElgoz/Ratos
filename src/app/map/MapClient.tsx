@@ -1,30 +1,24 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMap,
-} from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L, { LatLngExpression } from 'leaflet';
-import styles from './map.module.scss';
-import { Restaurant } from '@/types/restaurant';
-import SearchSidebar from './components/SearchSidebar';
-import MapNavigation from './components/MapNavigation';
-import CheeseSidebar from './components/CheeseSidebar';
+import { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L, { LatLngExpression } from "leaflet";
+import styles from "./map.module.scss";
+import { Restaurant } from "@/types/restaurant";
+import SearchSidebar from "./components/SearchSidebar";
+import MapNavigation from "./components/MapNavigation";
+import CheeseSidebar from "./components/CheeseSidebar";
 
 const mouseIcon = L.icon({
-  iconUrl: '/images/mouse-icon.png',
+  iconUrl: "/images/mouse-icon.png",
   iconSize: [36, 36],
   iconAnchor: [18, 36],
   popupAnchor: [0, -36],
 });
 
 const userIcon = L.icon({
-  iconUrl: '/images/mouse-user.png',
+  iconUrl: "/images/mouse-user.png",
   iconSize: [72, 72],
   iconAnchor: [36, 72],
   popupAnchor: [0, -72],
@@ -53,19 +47,23 @@ export default function MapClient() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [offers, setOffers] = useState<Offer[]>([]);
   const [position, setPosition] = useState<[number, number] | null>(null);
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [flyTarget, setFlyTarget] = useState<LatLngExpression | null>(null);
-  const [activePanel, setActivePanel] = useState<'search' | 'cheese' | null>('search');
+  const [activePanel, setActivePanel] = useState<"search" | "cheese" | null>(
+    "search"
+  );
 
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/restaurants`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/restaurants`
+        );
         const data = await res.json();
         setRestaurants(data);
       } catch (err) {
-        console.error('❌ Erreur en récupérant les restaurants :', err);
+        console.error("❌ Erreur en récupérant les restaurants :", err);
       }
     };
 
@@ -75,7 +73,7 @@ export default function MapClient() {
         const data = await res.json();
         setOffers(data);
       } catch (err) {
-        console.error('❌ Erreur en récupérant les offres :', err);
+        console.error("❌ Erreur en récupérant les offres :", err);
       }
     };
 
@@ -95,18 +93,20 @@ export default function MapClient() {
           setFlyTarget(coords);
         },
         () => {
-          setError('Localisation désactivée. Entrez une adresse ci-dessous.');
+          setError("Localisation désactivée. Entrez une adresse ci-dessous.");
         }
       );
     } else {
-      setError('Géolocalisation non disponible.');
+      setError("Géolocalisation non disponible.");
     }
   }, []);
 
   const handleAddressSearch = async () => {
     try {
       const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          address
+        )}`
       );
       const results = await res.json();
       if (results.length > 0) {
@@ -116,11 +116,11 @@ export default function MapClient() {
         setFlyTarget(coords);
         setError(null);
       } else {
-        setError('Adresse non trouvée.');
+        setError("Adresse non trouvée.");
       }
     } catch (err) {
-      console.error('Erreur de géocodage :', err);
-      setError('Erreur de géocodage.');
+      console.error("Erreur de géocodage :", err);
+      setError("Erreur de géocodage.");
     }
   };
 
@@ -131,16 +131,16 @@ export default function MapClient() {
       <MapNavigation
         active={activePanel}
         onToggleSearch={() =>
-          setActivePanel((prev) => (prev === 'search' ? null : 'search'))
+          setActivePanel((prev) => (prev === "search" ? null : "search"))
         }
         onToggleCheese={() =>
-          setActivePanel((prev) => (prev === 'cheese' ? null : 'cheese'))
+          setActivePanel((prev) => (prev === "cheese" ? null : "cheese"))
         }
       />
 
       <SearchSidebar
         restaurants={restaurants}
-        isOpen={activePanel === 'search'}
+        isOpen={activePanel === "search"}
         onClose={() => setActivePanel(null)}
         onSelect={(restaurant) => {
           setFlyTarget([restaurant.latitude, restaurant.longitude]);
@@ -150,7 +150,7 @@ export default function MapClient() {
 
       <CheeseSidebar
         offers={offers}
-        isOpen={activePanel === 'cheese'}
+        isOpen={activePanel === "cheese"}
         onClose={() => setActivePanel(null)}
       />
 
@@ -171,13 +171,13 @@ export default function MapClient() {
         center={initialCenter}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: '100vh', width: '100%' }}
+        style={{ height: "100vh", width: "100%" }}
       >
         {flyTarget && <FlyToMarker position={flyTarget} />}
 
         <TileLayer
-          attribution='&copy; OpenStreetMap contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          attribution="&copy; OpenStreetMap contributors"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
         {position && (
@@ -200,7 +200,15 @@ export default function MapClient() {
               eventHandlers={{ click: () => setFlyTarget(coords) }}
             >
               <Popup>
-                <strong>{resto.name}</strong>
+                <strong>
+                  <a
+                    href={`/restaurant/${resto.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {resto.name}
+                  </a>
+                </strong>
                 <br />
                 {resto.address}
               </Popup>

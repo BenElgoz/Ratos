@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './OfferForm.module.scss';
 
 export default function OfferForm() {
+  const router = useRouter();
   const [title, setTitle] = useState('');
   const [type, setType] = useState('');
   const [description, setDescription] = useState('');
@@ -48,7 +50,8 @@ export default function OfferForm() {
         throw new Error('Erreur serveur');
       }
 
-      alert('Offre créée avec succès ! 🎉');
+      // alert('Offre créée avec succès ! 🎉');
+      router.push('/confirmationoffre');
 
       // Réinitialiser le formulaire
       setTitle('');

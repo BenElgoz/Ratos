@@ -55,6 +55,10 @@ export default function StepSelector({ onSelect, role }: Props) {
       >
         Suivant
       </button>
+
+      <p className={styles.signupLink}>
+        Déjà un compte ? <a href="/login">Se connecter</a>
+      </p>
     </div>
   );
 }

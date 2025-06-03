@@ -58,7 +58,7 @@ export default function RestaurateurInfoForm({
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Créer ton compte commerçant</h2>
+      <h2>Crée ton compte commerçant</h2>
 
       <div className={styles.fields}>
         <input
