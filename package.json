@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^6.8.2",
     "bcrypt": "^6.0.0",
     "leaflet": "^1.9.4",
     "next": "15.3.0",
@@ -28,7 +27,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
-    "prisma": "^6.8.2",
     "typescript": "^5"
   }
 }
