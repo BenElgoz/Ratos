@@ -1,0 +1,67 @@
+// @import '../styles/variables';
+
+// .navbar {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 16px 32px;
+//   background-color: white;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+// }
+
+// .logo a {
+//   font-size: 24px;
+//   font-weight: bold;
+//   color: $vin-de-ruelle;
+//   text-decoration: none;
+// }
+
+// .navLinks {
+//   display: flex;
+//   gap: 20px;
+//   list-style: none;
+
+//   li a {
+//     text-decoration: none;
+//     color: $souterrain-chic;
+//     font-weight: 500;
+
+//     &:hover {
+//       color: $cheddar-grille;
+//     }
+//   }
+
+//   .cta {
+//     background-color: $cheddar-grille;
+//     color: white !important;
+//     padding: 8px 16px;
+//     border-radius: 6px;
+//     font-weight: bold;
+
+//     &:hover {
+//       background-color: darken($cheddar-grille, 5%);
+//     }
+//   }
+// }
+
+// // Mobile
+// @media (max-width: 768px) {
+//   .navLinks {
+//     flex-direction: column;
+//     position: absolute;
+//     top: 64px;
+//     right: 16px;
+//     background: white;
+//     border: 1px solid #eee;
+//     padding: 12px;
+//     display: none;
+//   }
+
+//   .navbar {
+//     flex-direction: column;
+//     align-items: flex-start;
+//   }
+// }

@@ -24,6 +24,9 @@ export default function Hero() {
             <Image src="/images/playstore.svg" alt="Play Store" width={20} height={20} />
             <span>Play Store</span>
           </a>
+          <a className={styles.storeBtn} href="/signup">
+            <span>Créer un compte</span>
+          </a>
         </div>
       </div>
 

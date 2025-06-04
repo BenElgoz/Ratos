@@ -3,6 +3,7 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 
+// import LandingNavbar from './components/LandingNavbar';
 import Hero from './components/Hero';
 import FeaturesSteps from './components/FeaturesSteps';
 import OfferPlans from './components/OfferPlans';
@@ -70,6 +71,7 @@ export default function Home() {
         ></script>
       </Head>
       <main>
+        {/* <LandingNavbar /> */}
         <Hero />
         <FeaturesSteps />
         <OfferPlans />
