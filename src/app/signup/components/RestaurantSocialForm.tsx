@@ -32,13 +32,13 @@ export default function RestaurantSocialForm({ data, onChange, onBack, onSubmit 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2>Réseaux sociaux</h2>
-      <div className="input">
-      <input name="instagram" placeholder="Instagram" value={data.instagram} onChange={handleChange} />
-      <input name="tiktok" placeholder="TikTok" value={data.tiktok} onChange={handleChange} />
-      <input name="facebook" placeholder="Facebook" value={data.facebook} onChange={handleChange} />
-      <input name="linkedin" placeholder="LinkedIn" value={data.linkedin} onChange={handleChange} />
-      <input name="x" placeholder="X (ex-Twitter)" value={data.x} onChange={handleChange} />
-      </div>
+      <div className={styles.inputs}>
+  <input className={styles.input} name="instagram" placeholder="Instagram" value={data.instagram} onChange={handleChange} />
+  <input className={styles.input} name="tiktok" placeholder="TikTok" value={data.tiktok} onChange={handleChange} />
+  <input className={styles.input} name="facebook" placeholder="Facebook" value={data.facebook} onChange={handleChange} />
+  <input className={styles.input} name="linkedin" placeholder="LinkedIn" value={data.linkedin} onChange={handleChange} />
+  <input className={styles.input} name="x" placeholder="X (ex-Twitter)" value={data.x} onChange={handleChange} />
+</div>
       <div className={styles.actions}>
         <button type="button" onClick={onBack}>Retour</button>
         <button type="submit">Valider</button>

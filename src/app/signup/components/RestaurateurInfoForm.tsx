@@ -117,6 +117,7 @@ export default function RestaurateurInfoForm({
           onChange={handleChange}
           required
         />
+      </div>
         <label className={styles.checkbox}>
           <input
             type="checkbox"
@@ -126,7 +127,6 @@ export default function RestaurateurInfoForm({
           />
           J’accepte les conditions générales d’utilisation.
         </label>
-      </div>
 
       <div className={styles.actions}>
         <button type="button" onClick={onBack}>

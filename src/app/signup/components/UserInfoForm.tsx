@@ -96,7 +96,6 @@ export default function UserInfoForm({ data, onChange, onNext, onBack }: Props) 
           onChange={handleChange}
           required
         />
-        
       </div>
       <label className={styles.checkbox}>
           <input
