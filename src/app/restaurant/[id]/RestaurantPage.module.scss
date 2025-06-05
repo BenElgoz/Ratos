@@ -35,7 +35,7 @@
   }
 
   .card {
-    background: white;
+    background: $nuage-de-lait;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -66,7 +66,7 @@
 }
 
 // Responsive
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-mobile) {
   .offers .list {
     grid-template-columns: 1fr;
   }

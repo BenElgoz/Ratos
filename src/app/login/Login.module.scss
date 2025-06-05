@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .container {
   max-width: 400px;
   margin: 0 auto;
@@ -24,15 +26,15 @@
   input {
     padding: 0.75rem;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid $nuage-de-lait;
     font-size: 1rem;
   }
 
   button {
     margin-top: 1rem;
     padding: 0.75rem;
-    background-color: #770048;
-    color: white;
+    background-color: $vin-de-ruelle;
+    color: $nuage-de-lait;
     font-weight: 600;
     border: none;
     border-radius: 8px;
@@ -51,7 +53,7 @@
 
   a {
     font-weight: bold;
-    color: #300019;
+    color: $souterrain-chic;
     text-decoration: underline;
   }
 }

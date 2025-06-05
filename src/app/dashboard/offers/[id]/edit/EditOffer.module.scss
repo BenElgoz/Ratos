@@ -54,7 +54,7 @@
 
   .submitBtn {
     background: $cheddar-grille;
-    color: white;
+    color: $nuage-de-lait;
     padding: 12px;
     border: none;
     border-radius: 8px;
@@ -75,7 +75,7 @@
   color: $souterrain-chic;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-mobile) {
   .form {
     margin: 20px;
     padding: 20px;

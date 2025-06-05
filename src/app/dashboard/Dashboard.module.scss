@@ -20,7 +20,7 @@
   background-size: cover;
   background-position: center;
   border-radius: 12px;
-  color: white;
+  color: $nuage-de-lait;
   padding: 40px;
   display: flex;
   justify-content: space-between;
@@ -39,7 +39,7 @@
     border: none;
     padding: 10px 16px;
     border-radius: 8px;
-    color: white;
+    color: $nuage-de-lait;
     cursor: pointer;
     transition: background 0.3s;
 
@@ -55,7 +55,7 @@
 
   .createBtn {
     background: $cheddar-grille;
-    color: white;
+    color: $nuage-de-lait;
     padding: 12px 20px;
     font-size: 16px;
     border: none;
@@ -82,7 +82,7 @@
   }
 
   .card {
-    background: white;
+    background: $nuage-de-lait;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -128,7 +128,7 @@
       margin-top: auto;
       align-self: flex-end;
       background: $cheddar-grille;
-      color: white;
+      color: $nuage-de-lait;
       border: none;
       padding: 8px 14px;
       font-size: 14px;
@@ -144,7 +144,7 @@
 }
 
 // Responsive : mobile
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-mobile) {
   .banner {
     flex-direction: column;
     align-items: flex-start;

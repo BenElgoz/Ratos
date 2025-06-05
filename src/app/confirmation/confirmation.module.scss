@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .container {
   display: flex;
   align-items: center;
@@ -8,7 +10,7 @@
 }
 
 .card {
-  background-color: #fff;
+  background-color: $nuage-de-lait;
   border-radius: 12px;
   padding: 3rem 2rem;
   max-width: 500px;
@@ -33,14 +35,14 @@
   display: inline-block;
   margin-top: 1.5rem;
   padding: 0.75rem 2rem;
-  background-color: #ff8200;
-  color: white;
+  background-color: $cheddar-grille;
+  color: $nuage-de-lait;
   font-weight: bold;
   border-radius: 8px;
   text-decoration: none;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #e67300;
+    background-color: $cheddar-grille;
   }
 }

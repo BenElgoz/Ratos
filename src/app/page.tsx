@@ -64,11 +64,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <script
-          defer
-          data-domain="ratos.fr"
-          src="https://plausible.io/js/script.js"
-        ></script>
+        <script defer data-domain="landing.ratos.fr" src="https://plausible.io/js/script.tagged-events.js"></script>
       </Head>
       <main>
         {/* <LandingNavbar /> */}

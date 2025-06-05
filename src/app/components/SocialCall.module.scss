@@ -12,7 +12,7 @@
     margin: 0 auto;
     align-items: center;
 
-    @media (max-width: 768px) {
+    @media (max-width: $breakpoint-mobile) {
       flex-direction: column;
       text-align: center;
     }
@@ -41,7 +41,7 @@
       gap: 1rem;
       justify-content: flex-start;
 
-      @media (max-width: 768px) {
+      @media (max-width: $breakpoint-mobile) {
         justify-content: center;
       }
 

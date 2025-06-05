@@ -5,7 +5,7 @@
 //   justify-content: space-between;
 //   align-items: center;
 //   padding: 16px 32px;
-//   background-color: white;
+//   background-color: $nuage-de-lait;
 //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 //   position: sticky;
 //   top: 0;
@@ -36,7 +36,7 @@
 
 //   .cta {
 //     background-color: $cheddar-grille;
-//     color: white !important;
+//     color: $nuage-de-lait !important;
 //     padding: 8px 16px;
 //     border-radius: 6px;
 //     font-weight: bold;
@@ -48,7 +48,7 @@
 // }
 
 // // Mobile
-// @media (max-width: 768px) {
+// @media (max-width: $breakpoint-mobile) {
 //   .navLinks {
 //     flex-direction: column;
 //     position: absolute;

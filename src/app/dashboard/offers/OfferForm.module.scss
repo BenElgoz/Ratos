@@ -83,7 +83,7 @@
 
   .submitBtn {
     background: $cheddar-grille;
-    color: white;
+    color: $nuage-de-lait;
     border: none;
     padding: 14px;
     font-size: 16px;
@@ -94,7 +94,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-mobile) {
   .form {
     flex-direction: column;
     padding: 24px;
