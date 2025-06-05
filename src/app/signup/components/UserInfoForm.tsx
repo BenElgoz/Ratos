@@ -96,7 +96,9 @@ export default function UserInfoForm({ data, onChange, onNext, onBack }: Props) 
           onChange={handleChange}
           required
         />
-        <label className={styles.checkbox}>
+        
+      </div>
+      <label className={styles.checkbox}>
           <input
             type="checkbox"
             name="termsAccepted"
@@ -105,7 +107,6 @@ export default function UserInfoForm({ data, onChange, onNext, onBack }: Props) 
           />
           J’accepte les conditions générales d’utilisation.
         </label>
-      </div>
 
       <div className={styles.actions}>
         <button type="button" onClick={onBack}>
